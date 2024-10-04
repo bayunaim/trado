@@ -1,0 +1,83 @@
+<div class="container">
+  <h2>Bookings</h2>
+
+  <form ng-submit="createBooking()">
+    <div class="form-group">
+      <label for="checkInDate">Check-In Date:</label>
+      <input
+        type="date"
+        ng-model="newBooking.check_in_date"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="checkOutDate">Check-Out Date:</label>
+      <input
+        type="date"
+        ng-model="newBooking.check_out_date"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="quantity">Quantity:</label>
+      <input
+        type="number"
+        ng-model="newBooking.quantity"
+        class="form-control"
+        required
+        min="1"
+      />
+    </div>
+    <button type="submit" class="btn btn-success">Add Booking</button>
+  </form>
+
+  <form ng-submit="filterBookings()">
+    <div class="form-group">
+      <label for="filterCheckInDate">Filter Check-In Date:</label>
+      <input
+        type="date"
+        ng-model="filters.check_in_date"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="filterCheckOutDate">Filter Check-Out Date:</label>
+      <input
+        type="date"
+        ng-model="filters.check_out_date"
+        class="form-control"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Filter</button>
+  </form>
+
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Check-In Date</th>
+        <th>Check-Out Date</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="booking in bookings">
+        <td>{{ booking.id }}</td>
+        <td>{{ booking.check_in_date }}</td>
+        <td>{{ booking.check_out_date }}</td>
+        <td>{{ booking.quantity }}</td>
+        <td>
+          <button class="btn btn-warning" ng-click="editBooking(booking.id)">
+            Edit
+          </button>
+          <button class="btn btn-danger" ng-click="deleteBooking(booking.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
